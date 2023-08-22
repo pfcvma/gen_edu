@@ -17,3 +17,4 @@ const info = {
 // console.log('hello');
 console.log(test.requestWithFile());
 // console.log(path.parse("/aaa.png").ext);
+

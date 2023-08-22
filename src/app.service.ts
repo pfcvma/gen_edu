@@ -5,6 +5,10 @@ import { HumanMessagePromptTemplate } from 'langchain/prompts';
 import path = require('path');
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const officeParser = require('officeparser');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const PDFParser = require('pdf-parse');
 
 interface reportInfoObject {
   purpose: string;
@@ -106,5 +110,13 @@ export class AppService {
         },
       },
     );
+  }
+  async extractTextFromOffice(file: Express.Multer.File) {
+    return await officeParser.parseOfficeAsync(file.buffer);
+  }
+
+  async extractTextFromPDF(file: Express.Multer.File) {
+    const data = await PDFParser(file.buffer);
+    return data.text;
   }
 }

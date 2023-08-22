@@ -33,4 +33,18 @@ export class AppController {
     const service = new AppService();
     return await service.solveAssignmentFromImage(file);
   }
+
+  @Post('/ppt')
+  @UseInterceptors(FileInterceptor('file'))
+  async pptTest(@UploadedFile() file: Express.Multer.File) {
+    const service = new AppService();
+    return await service.extractTextFromOffice(file);
+  }
+
+  @Post('/pdf')
+  @UseInterceptors(FileInterceptor('file'))
+  async pdfTest(@UploadedFile() file: Express.Multer.File) {
+    const service = new AppService();
+    return await service.extractTextFromPDF(file);
+  }
 }
