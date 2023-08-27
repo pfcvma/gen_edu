@@ -111,6 +111,19 @@ export class AppService {
       },
     );
   }
+  extractTextFromFiles(files: Array<Express.Multer.File>): string {
+    let text: string = '';
+    for (let i = 0; i < files.length; i++) {
+      if (path.parse(files[i].originalname).ext.slice(1) === 'pdf') {
+        text += '문서 이름: ' + files[i].originalname + '\n';
+        text += this.extractTextFromPDF(files[i]);
+      } else {
+        text += '문서 이름: ' + files[i].originalname + '\n';
+        text += this.extractTextFromOffice(files[i]);
+      }
+    }
+    return text;
+  }
   async extractTextFromOffice(file: Express.Multer.File) {
     return await officeParser.parseOfficeAsync(file.buffer);
   }
