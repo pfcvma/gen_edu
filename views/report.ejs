@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>gen edu</title>
+  <link rel="stylesheet" href="/css/index.css">
+</head>
+<body>
+<div class="container">
+  <nav>
+    <div class="menu_tab">
+      <a class="tab" href="index.ejs"><p class="tab_text">문제풀이</p></a>
+      <a class="tab" href="index.ejs"><p class="tab_text">작문</p></a>
+      <a class="tab" href="index.ejs"><p class="tab_text">질의응답</p></a>
+    </div>
+    <div class="menu_option">
+      <a class="side_option side2" href="index.ejs"><img src="../public/images/Layer.svg" class="side_img"><p class="side_option_text">오답노트</p></a>
+      <a class="side_option" href="index.ejs"><img src="../public/images/Trash.svg" class="side_img"><p class="side_option_text">질문 삭제</p></a>
+    </div>
+  </nav>
+  <div class="main">
+    <div class="input_space_report">
+      <form class="input_space_report_form">
+        <div class="report_input_div">
+          <p class="report_input_text">유형</p>
+          <select class="report_select">
+            <option>aa</option>
+          </select>
+        </div>
+        <div class="report_input_div">
+          <p class="report_input_text">목적</p>
+          <input class="report_input" placeholder="궁금한 점을 입력하세요!">
+        </div>
+        <div class="report_input_div">
+          <p class="report_input_text">제목</p>
+          <input class="report_input" placeholder="궁금한 점을 입력하세요!">
+        </div>
+        <div class="report_input_div">
+          <p class="report_input_text">소제목</p>
+          <input class="report_input" placeholder="궁금한 점을 입력하세요!">
+        </div>
+        <div class="report_input_div">
+          <p class="report_input_text ">설명</p>
+          <textarea class="report_input explanation" placeholder="궁금한 점을 입력하세요!"></textarea>
+        </div>
+        <div class="input_container">
+          <div class="report_input_div len">
+            <p class="report_input_text">길이</p>
+            <input class="report_input" placeholder="000자">
+          </div>
+          <div class="report_input_div len">
+            <p class="report_input_text">첨부파일</p>
+            <input class="report_input" type="file">
+          </div>
+        </div>
+        <button class="report_submit_button">제출</button>
+      </form>
+
+    </div>
+    <div class="output_space">
+      <div class="report_space">
+        <p class="output_subhead">결과</p>
+        <div class="report_text_space">
+          <p class="answer_text">이게 답이다.</p>
+        </div>
+      </div>
+      <div class="report_button_space">
+        <button class="report_button">복사</button>
+        <button class="report_button down">다운로드</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="/javascripts/index.js"></script>
+</body>
+</html>

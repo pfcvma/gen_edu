@@ -3,6 +3,7 @@ import {
   Controller,
   Get,
   Post,
+  Render,
   UploadedFile,
   UseInterceptors,
 } from '@nestjs/common';
@@ -14,8 +15,10 @@ export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-  getHello(): string {
-    return this.appService.getHello();
+  @Render('index')
+  getHello(): object {
+    return {};
+    // return this.appService.getHello();
   }
   @Post('/report')
   async reportTest(@Body() reportInfo) {

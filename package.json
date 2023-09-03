@@ -23,6 +23,8 @@
     "@nestjs/common": "^10.0.0",
     "@nestjs/core": "^10.0.0",
     "@nestjs/platform-express": "^10.0.0",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
     "langchain": "^0.0.131",
     "office-to-pdf": "^4.0.0",
     "officegen": "^0.6.5",

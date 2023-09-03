@@ -2,9 +2,11 @@ import { Injectable } from '@nestjs/common';
 import { ChatOpenAI } from 'langchain/chat_models/openai';
 import { BaseMessage } from 'langchain/schema';
 import { HumanMessagePromptTemplate } from 'langchain/prompts';
-import path = require('path');
 import axios from 'axios';
 import { v4 as uuidv4 } from 'uuid';
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { Configuration, OpenAIApi } = require('openai');
+import path = require('path');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const officeParser = require('officeparser');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
@@ -23,6 +25,29 @@ export class AppService {
     return 'Hello World!';
   }
 
+  createOpenAIApi(apiKey) {
+    const configuration = new Configuration({
+      apiKey: apiKey,
+    });
+    return new OpenAIApi(configuration);
+  }
+
+  async chatCreation2(prompt: string) {
+    // const openai = new OpenAI({
+    //   apiKey: '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',
+    // });
+    const configuration = new Configuration({
+      apiKey: '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',
+    });
+    const openai = new OpenAIApi(configuration);
+    const chatCompletion = await openai.createChatCompletion({
+      model: 'gpt-4',
+      messages: [{ role: 'user', content: prompt }],
+    });
+    return chatCompletion.data.choices[0].message.content;
+    // console.log(chatCompletion.data.choices[0].message.content);
+  }
+
   async chatCreation(prompt: string) {
     //util
     const chat = new ChatOpenAI({
@@ -33,7 +58,7 @@ export class AppService {
   }
   async generateReport(reportInfo: reportInfoObject) {
     const prompt = await this.makeReportPrompt(reportInfo);
-    return this.chatCreation(prompt);
+    return this.chatCreation2(prompt);
   }
   async makeReportPrompt(reportInfo: reportInfoObject) {
     const promptTemplate: string =
@@ -65,7 +90,29 @@ export class AppService {
     const prompt: BaseMessage[] | string = await basicPrompt.formatMessages({
       problem: text,
     });
-    return this.chatCreation(prompt[0]['content']);
+    const result = await this.chatCreation(prompt[0]['content']);
+    return this.convertJson(result);
+  }
+
+  convertJson(inputString) {
+    const responseArray = inputString
+      .split('\n')
+      .filter((line) => line.trim() !== '');
+
+    // 기본값 설정
+    let answer = '';
+    let solution = '';
+
+    // 배열을 순회하면서 "답: "과 "풀이: "을 찾아서 해당 문자열 추출
+    for (const line of responseArray) {
+      if (line.startsWith('답: ')) {
+        answer = line.substring(3); // "답: " 이후의 문자열
+      } else if (line.startsWith('풀이: ')) {
+        solution = line.substring(4); // "풀이: " 이후의 문자열
+      }
+    }
+
+    return { answer, solution };
   }
   async convertImageToText(file: Express.Multer.File): Promise<string> {
     const res = await this.sendOcrRequest(file);
