@@ -58,11 +58,21 @@ export class AppService {
   }
   async generateReport(reportInfo: reportInfoObject) {
     const prompt = await this.makeReportPrompt(reportInfo);
-    return this.chatCreation2(prompt);
+    const report = await this.chatCreation2(prompt);
+    return { report };
+  }
+
+  async generateReportFile(
+    reportInfo: reportInfoObject,
+    file: Express.Multer.File,
+  ) {
+    const prompt = await this.makeReportPromptFile(reportInfo, file);
+    const report = await this.chatCreation2(prompt);
+    return { report };
   }
   async makeReportPrompt(reportInfo: reportInfoObject) {
     const promptTemplate: string =
-      '{purpose} 를 작성하고 싶어. 글의 제목은 "{title}" 이고 주제는 "{subject}" 야.\n';
+      '{purpose} 를 작성하고 싶어. 글의 제목은 "{title}" 이야.\n';
     const basicPrompt = HumanMessagePromptTemplate.fromTemplate(promptTemplate);
     let prompt: BaseMessage[] | string = await basicPrompt.formatMessages({
       purpose: reportInfo.purpose,
@@ -77,6 +87,31 @@ export class AppService {
     if ('explanation' in reportInfo)
       prompt +=
         '다음은 글을 작성하면서 지켜야할 조건이야.\n' + reportInfo.explanation;
+    return prompt + '\n위를 토대로 작성해줘.';
+  }
+
+  async makeReportPromptFile(
+    reportInfo: reportInfoObject,
+    file: Express.Multer.File,
+  ) {
+    const fileText = await this.extractTextFromFile(file);
+    const promptTemplate: string =
+      '{purpose} 를 작성하고 싶어. 글의 제목은 "{title}" 이야.\n';
+    const basicPrompt = HumanMessagePromptTemplate.fromTemplate(promptTemplate);
+    let prompt: BaseMessage[] | string = await basicPrompt.formatMessages({
+      purpose: reportInfo.purpose,
+      title: reportInfo.title,
+      subject: reportInfo.subject,
+    });
+    prompt = prompt[0]['content'];
+    if ('subtitle' in reportInfo)
+      prompt += '소제목은 \n' + reportInfo.subtitle + '\n이야.\n';
+    if ('length' in reportInfo)
+      prompt += '글자수는 ' + reportInfo.length + '자로 맞춰줘.\n';
+    if ('explanation' in reportInfo)
+      prompt +=
+        '다음은 글을 작성하면서 지켜야할 조건이야.\n' + reportInfo.explanation;
+    prompt += '\n그리고 아래 글을 참고해서 작성해줘.\n' + fileText;
     return prompt + '\n위를 토대로 작성해줘.';
   }
   async solveAssignmentFromImage(file: Express.Multer.File) {
@@ -169,6 +204,20 @@ export class AppService {
         text += this.extractTextFromOffice(files[i]);
       }
     }
+    return text;
+  }
+
+  async extractTextFromFile(file: Express.Multer.File) {
+    let text: string = '';
+
+    if (path.parse(file.originalname).ext.slice(1) === 'pdf') {
+      text += '문서 이름: ' + file.originalname + '\n';
+      text += await this.extractTextFromPDF(file);
+    } else {
+      text += '문서 이름: ' + file.originalname + '\n';
+      text += await this.extractTextFromOffice(file);
+    }
+
     return text;
   }
   async extractTextFromOffice(file: Express.Multer.File) {

@@ -3,7 +3,6 @@ import { AppService } from '../src/app.service';
 const test = new AppService();
 const info = {
   purpose: '투자심사보고서',
-  subject: '삼성',
   title: '삼성을 구매하라!',
   subtitle:
     '1. 회사 개요\n2. 반도체 업황 분석\n3. 주식 가치 평가\n4.투자 의견 정리',

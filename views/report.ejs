@@ -9,13 +9,13 @@
 <div class="container">
   <nav>
     <div class="menu_tab">
-      <a class="tab" href="index.ejs"><p class="tab_text">문제풀이</p></a>
-      <a class="tab" href="index.ejs"><p class="tab_text">작문</p></a>
+      <a class="tab" href="/"><p class="tab_text">문제풀이</p></a>
+      <a class="tab" href="/writing"><p class="tab_text">작문</p></a>
       <a class="tab" href="index.ejs"><p class="tab_text">질의응답</p></a>
     </div>
     <div class="menu_option">
-      <a class="side_option side2" href="index.ejs"><img src="../public/images/Layer.svg" class="side_img"><p class="side_option_text">오답노트</p></a>
-      <a class="side_option" href="index.ejs"><img src="../public/images/Trash.svg" class="side_img"><p class="side_option_text">질문 삭제</p></a>
+      <a class="side_option side2" href="index.ejs"><img src="/images/Layer.svg" class="side_img"><p class="side_option_text">오답노트</p></a>
+      <a class="side_option" href="index.ejs"><img src="/images/Trash.svg" class="side_img"><p class="side_option_text">질문 삭제</p></a>
     </div>
   </nav>
   <div class="main">
@@ -23,8 +23,12 @@
       <form class="input_space_report_form">
         <div class="report_input_div">
           <p class="report_input_text">유형</p>
-          <select class="report_select">
-            <option>aa</option>
+          <select class="report_select" id="report_select">
+            <option value="증권사 리포트">증권사 리포트</option>
+            <option value="교양 레포트">교양 레포트</option>
+            <option value="사실관계증명서">사실관계증명서</option>
+            <option value="생활기록부">생활기록부</option>
+            <option value="자기소개서">자기소개서</option>
           </select>
         </div>
         <div class="report_input_div">
@@ -33,27 +37,27 @@
         </div>
         <div class="report_input_div">
           <p class="report_input_text">제목</p>
-          <input class="report_input" placeholder="궁금한 점을 입력하세요!">
+          <input class="report_input" placeholder="궁금한 점을 입력하세요!" id="title">
         </div>
         <div class="report_input_div">
           <p class="report_input_text">소제목</p>
-          <input class="report_input" placeholder="궁금한 점을 입력하세요!">
+          <input class="report_input" placeholder="궁금한 점을 입력하세요!" id="subtitle">
         </div>
         <div class="report_input_div">
           <p class="report_input_text ">설명</p>
-          <textarea class="report_input explanation" placeholder="궁금한 점을 입력하세요!"></textarea>
+          <textarea class="report_input explanation" placeholder="궁금한 점을 입력하세요!" id="explanation"></textarea>
         </div>
         <div class="input_container">
           <div class="report_input_div len">
             <p class="report_input_text">길이</p>
-            <input class="report_input" placeholder="000자">
+            <input class="report_input" placeholder="000자" id="length">
           </div>
           <div class="report_input_div len">
             <p class="report_input_text">첨부파일</p>
-            <input class="report_input" type="file">
+            <input class="report_input" type="file" data-ax-path="file" id="file">
           </div>
         </div>
-        <button class="report_submit_button">제출</button>
+        <button class="report_submit_button" onclick="writing_ajax()" type="button">제출</button>
       </form>
 
     </div>
@@ -61,7 +65,7 @@
       <div class="report_space">
         <p class="output_subhead">결과</p>
         <div class="report_text_space">
-          <p class="answer_text">이게 답이다.</p>
+          <p class="answer_text" id="report_text">이게 답이다.</p>
         </div>
       </div>
       <div class="report_button_space">
@@ -71,6 +75,7 @@
     </div>
   </div>
 </div>
-<script src="/javascripts/index.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+<script src="/javascripts/ajax.js"></script>
 </body>
 </html>

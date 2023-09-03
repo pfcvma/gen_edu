@@ -16,14 +16,37 @@ export class AppController {
 
   @Get()
   @Render('index')
-  getHello(): object {
+  getAssignment(): object {
     return {};
-    // return this.appService.getHello();
+  }
+  @Get('/writing')
+  @Render('report')
+  getWriting(): object {
+    return {};
   }
   @Post('/report')
-  async reportTest(@Body() reportInfo) {
+  async report(@Body() reportInfo) {
     const service = new AppService();
     return await service.generateReport(reportInfo);
+  }
+
+  @Post('/file')
+  @UseInterceptors(FileInterceptor('file'))
+  async file(@UploadedFile() file: Express.Multer.File) {
+    const service = new AppService();
+    return { file: await service.extractTextFromFile(file) };
+  }
+  @Post('/report_file')
+  @UseInterceptors(FileInterceptor('file'))
+  async reportFile(
+    @Body() reportInfo,
+    @UploadedFile() file: Express.Multer.File,
+  ) {
+    const service = new AppService();
+    return await service.generateReportFile(
+      JSON.parse(reportInfo.reportInfo),
+      file,
+    );
   }
   @Post('/assignment_text')
   async assignmentTest(@Body() body) {
