@@ -11,10 +11,10 @@
     <div class="menu_tab">
       <a class="tab" href="/"><p class="tab_text">문제풀이</p></a>
       <a class="tab" href="/writing"><p class="tab_text">작문</p></a>
-      <a class="tab" href="index.ejs"><p class="tab_text">질의응답</p></a>
+      <a class="tab" href="/question"><p class="tab_text">질의응답</p></a>
     </div>
     <div class="menu_option">
-      <a class="side_option side2" href="index.ejs"><img src="/images/Layer.svg" class="side_img"><p class="side_option_text">오답노트</p></a>
+      <a class="side_option side2" href="index.ejs"><img src="/images/Layer.svg" class="side_img"><p class="side_option_text">보관함</p></a>
       <a class="side_option" href="index.ejs"><img src="/images/Trash.svg" class="side_img"><p class="side_option_text">질문 삭제</p></a>
     </div>
   </nav>
@@ -22,21 +22,22 @@
     <div class="input_space_report">
       <form class="input_space_report_form">
         <div class="report_input_div">
-          <p class="report_input_text">유형</p>
+          <p class="report_input_text">유형 <span style="color: rgba(248, 96, 96, 0.90)">*</span></p>
           <select class="report_select" id="report_select">
             <option value="증권사 리포트">증권사 리포트</option>
             <option value="교양 레포트">교양 레포트</option>
             <option value="사실관계증명서">사실관계증명서</option>
             <option value="생활기록부">생활기록부</option>
             <option value="자기소개서">자기소개서</option>
+            <option value="알림장/가정통신문">알림장/가정통신문</option>
           </select>
         </div>
+<!--        <div class="report_input_div">-->
+<!--          <p class="report_input_text">목적</p>-->
+<!--          <input class="report_input" placeholder="궁금한 점을 입력하세요!">-->
+<!--        </div>-->
         <div class="report_input_div">
-          <p class="report_input_text">목적</p>
-          <input class="report_input" placeholder="궁금한 점을 입력하세요!">
-        </div>
-        <div class="report_input_div">
-          <p class="report_input_text">제목</p>
+          <p class="report_input_text">제목 <span style="color: rgba(248, 96, 96, 0.90)">*</span></p>
           <input class="report_input" placeholder="궁금한 점을 입력하세요!" id="title">
         </div>
         <div class="report_input_div">
@@ -65,7 +66,7 @@
       <div class="report_space">
         <p class="output_subhead">결과</p>
         <div class="report_text_space">
-          <p class="answer_text" id="report_text">이게 답이다.</p>
+          <p class="answer_text" id="report_text"></p>
         </div>
       </div>
       <div class="report_button_space">

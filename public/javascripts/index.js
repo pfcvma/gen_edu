@@ -38,3 +38,19 @@ function previewImage() {
     reader.readAsDataURL(input.files[0]);
   }
 }
+
+// function previewPdf(){
+//   const input = document.querySelector('.file_input');
+//   const preview = document.getElementById('pdf_viewer');
+//
+//   if (input.files && input.files[0]) {
+//     const reader = new FileReader();
+//
+//     reader.onload = function (e) {
+//       preview.src = `url('${e.target.result}')`;
+//       // preview.style.backgroundImage = `url('${e.target.result}')`;
+//     };
+//
+//     reader.readAsDataURL(input.files[0]);
+//   }
+// }

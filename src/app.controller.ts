@@ -24,6 +24,18 @@ export class AppController {
   getWriting(): object {
     return {};
   }
+
+  @Get('/question')
+  @Render('question')
+  getQuestion(): object {
+    return {};
+  }
+  @Post('/chat')
+  async chat(@Body() request) {
+    const service = new AppService();
+    return await service.chatCreation3(request);
+  }
+
   @Post('/report')
   async report(@Body() reportInfo) {
     const service = new AppService();
@@ -35,6 +47,14 @@ export class AppController {
   async file(@UploadedFile() file: Express.Multer.File) {
     const service = new AppService();
     return { file: await service.extractTextFromFile(file) };
+  }
+
+  @Post('/file_chat')
+  @UseInterceptors(FileInterceptor('file'))
+  async file_chat(@UploadedFile() file: Express.Multer.File) {
+    const service = new AppService();
+    await service.fileChat(file);
+    return {};
   }
   @Post('/report_file')
   @UseInterceptors(FileInterceptor('file'))

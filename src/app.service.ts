@@ -19,6 +19,8 @@ interface reportInfoObject {
   [key: string]: string | null; // 나머지 속성의 타입을 string으로 지정
 }
 
+let messages = [];
+
 @Injectable()
 export class AppService {
   getHello(): string {
@@ -46,6 +48,30 @@ export class AppService {
     });
     return chatCompletion.data.choices[0].message.content;
     // console.log(chatCompletion.data.choices[0].message.content);
+  }
+
+  async chatCreation3(message) {
+    // const openai = new OpenAI({
+    //   apiKey: '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',
+    // });
+    const configuration = new Configuration({
+      apiKey: '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',
+    });
+    messages.push({ role: 'user', content: message.request });
+    const openai = new OpenAIApi(configuration);
+    const chatCompletion = await openai.createChatCompletion({
+      model: 'gpt-4',
+      messages: messages,
+    });
+    return { response: chatCompletion.data.choices[0].message.content };
+    // console.log(chatCompletion.data.choices[0].message.content);
+  }
+
+  async fileChat(file: Express.Multer.File) {
+    const text = await this.extractTextFromFile(file);
+    messages = [
+      { role: 'user', content: text + '\n위 글에 대해 질문 할거야.' },
+    ];
   }
 
   async chatCreation(prompt: string) {
@@ -113,6 +139,26 @@ export class AppService {
         '다음은 글을 작성하면서 지켜야할 조건이야.\n' + reportInfo.explanation;
     prompt += '\n그리고 아래 글을 참고해서 작성해줘.\n' + fileText;
     return prompt + '\n위를 토대로 작성해줘.';
+  }
+
+  makePurposePrompt(purpose) {
+    let text = '';
+    if (purpose === '증권사 리포트') {
+      text = '';
+      return text;
+    } else if (purpose === '교양 레포트') {
+      text = '';
+      return text;
+    } else if (purpose === '사실관계증명서') {
+      text = '';
+      return text;
+    } else if (purpose === '생활기록부') {
+      text = '';
+      return text;
+    } else if (purpose === '자기소개서') {
+      text = '';
+      return text;
+    }
   }
   async solveAssignmentFromImage(file: Express.Multer.File) {
     const text = await this.convertImageToText(file);
