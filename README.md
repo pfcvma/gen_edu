@@ -1,7 +1,7 @@
 # Team GenEDU
 **공동대표**: 기획, 디자인, UI/UX 설계
 <br>
-> MVP(for 42Seoul Demoday): 위 코드 참고, Developed by Min Koo (Github ID : [`koomin1227`](https://github.com/koomin1227))
+> MVP(for 42Seoul Demoday): 본 repository 참고, Developed by Min Koo (Github : [`koomin1227`](https://github.com/koomin1227))
 >
 > UI/UX([Figma](https://www.figma.com/file/NIhZ6tf8msAPoxzutubskH/RealTalk_UI?type=design&node-id=56%3A846&mode=design&t=qQzcIcIUY8GCKUTq-1))
 >
