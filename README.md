@@ -1,7 +1,7 @@
 # Team GenEDU
 **공동대표**: 기획, 디자인, UI/UX 설계
 <br>
-> MVP (for 42Seoul Demoday): 본 Repository 참고, Developed by Min Koo (Github : [`koomin1227`](https://github.com/koomin1227))
+> MVP (for 42 SEOUL Demoday): 본 Repository 참고, Developed by Min Koo (Github : [`koomin1227`](https://github.com/koomin1227))
 >
 > UI/UX: [Figma](https://www.figma.com/file/XGUehlBplgw0oaZRpZBa3w/GenEDU_UI?type=design&node-id=633%3A15652&mode=design&t=bRz9DkuSJQ8Lxpqv-1)
 >
@@ -9,7 +9,7 @@
 
 <br>
 <h3>성과 (2023.05 ~)</h3>
-・ IBK창공 서울대캠프 3기<br>
+・ IBK창공 서울대캠프 3기 선정<br>
 ・ 서울대학교 창업공간 입주기업 선정 <br>
 ・ SNU 해동 주니어 스타트업 선정 <br>
 ・ 서울대학교 창업동아리 선정 <br>
