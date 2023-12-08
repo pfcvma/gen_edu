@@ -5,7 +5,7 @@
 >
 > UI/UX: [Figma](https://www.figma.com/file/XGUehlBplgw0oaZRpZBa3w/GenEDU_UI?type=design&node-id=633%3A15652&mode=design&t=bRz9DkuSJQ8Lxpqv-1)
 >
-> IR Pitch Deck: [IR_0905.pdf](https://drive.google.com/file/d/1xzGQAiBFLZwgkqBaaG2i5TnZqd6WjjMX/view?usp=sharing)
+> IR Pitch Deck(공개용): [IR_0905.pdf](https://drive.google.com/file/d/1xzGQAiBFLZwgkqBaaG2i5TnZqd6WjjMX/view?usp=sharing)
 
 <br>
 <h3>성과 (2023.05 ~)</h3>
