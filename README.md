@@ -8,7 +8,7 @@
 > IR Pitch Deck(공개용): [IR_0905.pdf](https://drive.google.com/file/d/1xzGQAiBFLZwgkqBaaG2i5TnZqd6WjjMX/view?usp=sharing)
 
 <br>
-<h3>GenEDU 성과 (2023.05 ~)</h3>
+<h3>GenEDU's Achievements (2023.05 ~)</h3>
 ・ IBK창공 서울대캠프 3기 선정<br>
 ・ 서울대학교 창업공간 입주기업 선정 <br>
 ・ SNU 해동 주니어 스타트업 선정 <br>
