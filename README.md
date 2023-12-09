@@ -15,6 +15,6 @@
 ・ 서울대학교 창업동아리 선정 <br>
 ・ SC제일은행 Women in Entrepreneurship 선정 <br>
 ・ 42 SEOUL 창업 부트캠프 선정 <br>
-・ 네이버 D2SF 최종 인터뷰 <br>
+・ 네이버 D2SF 기술창업 공모전 최종 인터뷰 <br>
 
 
